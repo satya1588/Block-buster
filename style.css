@@ -1,0 +1,260 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	height: 100%;
+}
+body {
+	font: 100%/1 "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, sans-serif;
+	background: #4F5F61;
+	color:#fff;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+h2, h3 {
+	font-size: 1rem;
+	line-height: 1;
+	margin-bottom: 0.2rem;
+}
+button {
+	font: bold 0.7rem/1 "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", Helvetica, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 0.09em;
+	background: #00a3eb;
+	color: #fff;
+	border:none;
+	padding: 0.6rem;
+}
+button:hover {
+	cursor: pointer;
+	background: #AC53FD;
+}
+input, label {
+	vertical-align: baseline;
+}
+textarea {
+	display:block;
+	width: 100%;
+	font: 100%/1 monospace;
+	padding: 0.2rem;
+	margin: 0.4rem 0;
+	box-sizing: border-box;
+}
+p {
+	margin: 0.4rem 0 0.4rem 0;
+	line-height: 1.5;
+}
+input[type="text"] {
+	padding: 0.1rem;
+	margin: 0.2rem;
+}
+input.error {
+	background: #fdd;
+}
+
+a {
+	color: #00a3eb;
+	text-decoration: none;
+}
+a:hover {
+	color: #AC53FD;
+	text-decoration: underline;
+}
+
+/* Layout */
+
+#puzzle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 5.2rem;
+    z-index: 0;
+}
+
+#list {
+display: none;
+}
+#meta {
+    height: 5.2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    line-height: 1.2rem;
+    background: rgba(33, 36, 43, 0.9);
+}
+body.hideList #list { display: none; }
+body.hideList #puzzle { left: 0; }
+body.hideList #meta { left: 0; }
+
+@media screen and (max-width: 32rem) {
+	#list {
+		width: auto;
+		right: 0;
+	}
+	#puzzle {
+		left: 0;
+	}
+	#meta {
+		left: 0;
+	}
+}
+
+/* List */
+div.title {
+	border-bottom: 1px solid #ccc;
+}
+ul.collections span.pack {
+	display: block;
+	padding: 0.35em 0.4rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+ul.collections span.pack span.title::before { content: "▾ "; }
+ul.collections li.hide span.title::before { content: "▸ "; }
+ul.puzzles li {
+	padding: 0.35em 0.4rem;
+	padding-left: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+span.stats {
+	font-size: 0.7rem;
+	padding-left: 0.2rem;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: right;
+}
+span.author {
+	text-align: right;
+	padding-left: 0.4rem;
+}
+span.title {
+	padding-left: 0.85em;
+	text-indent: -0.85em;
+}
+ul.collections span.pack:hover { cursor: pointer; }
+ul.collections span.pack:hover span.title::before { color: #00a3eb; }
+ul.puzzles li:hover {
+	cursor: pointer;
+	background: #Ac53FD;
+}
+ul.puzzles li.selected {
+	background: #00a3eb;
+}
+ul.puzzles li.completed {
+	color: #aaa;
+}
+ul.puzzles li.completed .stats { color: #fff; }
+div.title ul.collections span.pack span.title::before { content: normal; }
+div.title ul.collections span.pack:hover { cursor: inherit; }
+div.title ul.collections span.pack:hover span.title::before { color: inherit; }
+div.title ul.puzzles li:hover {
+	cursor: inherit;
+	background: inherit;
+	color: inherit;
+}
+li.hide ul {
+	display: none;
+}
+li.selected {
+	font-weight: bold;
+}
+
+/* Meta */
+#btnToggleList {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 0 0.6rem;
+}
+#btnToggleList span::before{ content: '◂'; }
+body.hideList #btnToggleList span::before { content: '▸'; }
+#btnToggleList span {
+	writing-mode: vertical-lr;
+	text-align: center;
+}
+
+#flex {
+	padding: 0.8rem 0 0 0.8rem;
+	position: absolute;
+	left: 1.9rem;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	overflow-y: auto;
+}
+#puzzleinfo {
+	margin-right: auto;
+}
+#flex > * {
+	padding: 0 0.8rem 0.8rem 0;
+}
+#flex .flexbtn {
+	align-self: center;
+}
+#flex .flexbtn button {
+	margin: 0 0.4rem 0 0.4rem;
+	vertical-align: middle;
+}
+#flex .key {
+	text-decoration: underline;
+}
+#flex .movement {
+	line-height: 2.4rem;
+}
+#flex .movement img {
+	margin: 0 0.2rem;
+	vertical-align: bottom;
+	height: 2rem;
+}
+#flex label {
+	display: block;
+}
+
+#shade {
+	/* display: none; */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.9);
+	display: none;
+}
+body.shade #shade {
+	display: flex;
+}
+
+.modal {
+	max-height: 100%;
+	padding: 0.8rem;
+	z-index: 200;
+	background: #444;
+	display: none;
+}
+.modal div.btns {
+	text-align: right;
+}
+
+body.mod_collectionParse #collectionParse { display: block; }
+body.mod_collectionVerify #collectionVerify { display: block; }
+body.mod_collectionError #collectionError { display: block; }
