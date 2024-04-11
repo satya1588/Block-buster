@@ -50,7 +50,9 @@ pm.onselect = function (collection, puzzleIdx) {
             window.setTimeout(function () { pm.next(); }, 150);
         }
     }
-
+    window.addEventListener('beforeunload', function() {
+        pm.saveCurrentLevel();
+    });
     if (p.a) {
         elPAuth.innerHTML = p.a;
     }
@@ -94,6 +96,10 @@ function sokoKeypress(evt) {
     let k = evt.key.toLowerCase();
     if (evt.key === 'Enter') { 
         undo();
+        return;
+    }
+    if (kc === 179) { 
+        restart();
         return;
     }
     if (k === 'r') {
