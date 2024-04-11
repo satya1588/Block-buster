@@ -15,16 +15,20 @@
 <body id="warehouse_keeper_game">
 	<div id="meta">
 		<button id="btnToggleList"><span>Puzzles</span></button>
-
+		
 		<div id="flex">
 			<div id="puzzleinfo">
-				<h2 id="ptitle"></h2> 
+				<h2 id="ptitl"> 
+					<p>Press Ok To Undo</p>
+					<p>Press Play/Pause To Reset</p>	
+				</h2> 
 				<span id="pauths"></span>
 			</div>
 			
 			<div class="flexbtn">
-				<button id="btnUndo" title="Press U to undo."><span class="key">U</span>ndo</button>
-				<button id="btnRestart" title="Press R to restart."><span class="key">R</span>estart</button>
+				
+				<button id="btnUndo" title="Press U to undo."><span class="key">OK</span></button>
+				<button id="btnRestart" title="Press R to restart."><span class="key">Play/Pause</span></button>
 			</div>
 
 			<!-- <div>
@@ -50,9 +54,9 @@
 		<div class="title">
 			<ul class="collections">
 				<li>
-					<span class="pack"><span class="title">Collection (<a href="" onclick="return false" id="aAdd">Add Collection</a>)</span><span class="author">Author</span></span>
+					<span class="pack"><span class="title"> (<a href="" onclick="return false" id="aAdd"></a>)</span><span class="author"></span></span>
 					<ul class="puzzles">
-						<li>Puzzle<span class="stats">Best Pushes : Best Moves</span>
+						<li>Puzzle<span class="stats"></span>
 					</ul>
 				</li>
 			</ul>
