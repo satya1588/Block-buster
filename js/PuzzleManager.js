@@ -7,6 +7,13 @@ export default class PuzzleManager {
         });
     }
 
+    saveCurrentLevel() {
+        if (this.selCollection && this.selIdx >= 0) {
+            localStorage.setItem('currentCollection', this.selCollection.t);
+            localStorage.setItem('currentIndex', this.selIdx);
+        }
+    }
+
     _updateDOM() {
         this.elementUL.innerHTML = '';
         for (let i = 0, len = this.collections.length; i < len; ++i) {
@@ -170,6 +177,29 @@ export default class PuzzleManager {
     }
 
     startLastPuzzle() {
+        let currentCollection = localStorage.getItem('currentCollection');
+        let currentIndex = localStorage.getItem('currentIndex');
+    
+        if (currentCollection !== null && currentIndex !== null) {
+            // get the actual collection object
+            let collection;
+            for (let i = 0; i < this.collections.length; ++i) {
+                if (this.collections[i].t === currentCollection) {
+                    collection = this.collections[i];
+                    break;
+                }
+            }
+            let idx = parseInt(currentIndex, 10);
+    
+            // Start from the saved level
+            if (collection && idx >= 0) {
+                this.DOMItems[collection.t].titleLI.classList.remove('hide');
+                this.select(collection, idx);
+                return;
+            }
+        }
+    
+        // Fallback to the last played level if the saved level is not found
         let lastCollection = localStorage.getItem('lastCollection');
         let lastIdx = localStorage.getItem('lastIdx');
         if (lastCollection === null || lastIdx === null) {
@@ -185,15 +215,14 @@ export default class PuzzleManager {
             }
         }
         let idx = parseInt(lastIdx, 10);
-
+    
         // Print error if we can't find one
         if (!collection || !(idx >= 0)) {
             console.log('Could not find collection ' + lastCollection
                 + 'or idx ' + lastIdx + ' is out of range');
             return;
         }
-
+    
         this.DOMItems[collection.t].titleLI.classList.remove('hide');
         this.select(collection, idx);
-    }
-}
+    }}
