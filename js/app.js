@@ -92,11 +92,11 @@ function sokoKeypress(evt) {
     }
     let kc = evt.keyCode;
     let k = evt.key.toLowerCase();
-    if (k === 'u') {
+    if (evt.key === 'Enter') { 
         undo();
         return;
     }
-    if (k === 'r') {
+    if (evt.key === '179') {
         restart();
         return;
     }
@@ -126,6 +126,7 @@ function sokoKeypress(evt) {
         }
     }
 }
+elBtnRestart.addEventListener('click', restart);
 function sokoSwipe(dir) {
     if (!puzzle || !view) {
         return;
