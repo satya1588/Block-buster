@@ -96,7 +96,7 @@ function sokoKeypress(evt) {
         undo();
         return;
     }
-    if (evt.key === '179') {
+    if (k === 'r') {
         restart();
         return;
     }
@@ -118,6 +118,10 @@ function sokoKeypress(evt) {
         evt.preventDefault();
         mObj = puzzle.move('d');
     }
+    else if (kc === 179 || k === 'r' || k === 'j') { 
+        evt.preventDefault();
+        mObj = puzzle.move('r');
+    }
 
     if (mObj) {
         view.update(mObj);
@@ -126,7 +130,7 @@ function sokoKeypress(evt) {
         }
     }
 }
-elBtnRestart.addEventListener('click', restart);
+
 function sokoSwipe(dir) {
     if (!puzzle || !view) {
         return;
